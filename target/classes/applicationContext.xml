@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:teacher.properties, classpath:teacher2.properties"/>
+    <bean id="myWisdomService"
+          class="com.devmind.springapp.WisdomWordsService">
+    </bean>
+
+    <bean id="myTeacher"
+          class="com.devmind.springapp.JavaTeacher">
+        <constructor-arg ref="myWisdomService"/>
+        <property name="age" value="${java.teacher.age}" />
+        <property name="workPlace" value="${great.place.to.work}" />
+
+    </bean>
+
+    <bean id="myMathTeacher"
+          class="com.devmind.springapp.MathTeacher">
+        <property name="wisdomService" ref="myWisdomService" />
+    </bean>
+
+</beans>
+
